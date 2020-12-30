@@ -103,6 +103,31 @@
   <div id="ExploreModal" style="overflow: scroll;" class="modal">
     <div class="modal-content">
       <span class="close">&times;</span>
+      <h2> Download your Messenger data from Facebook </h2>
+      <p>
+         - Download your Facebook archive from <a href="https://www.facebook.com/your_information/"> this link</a>. <br>
+         - Click "Download Your Information" <br>
+         - Select the format "JSON" <br>
+         - Select at least "Messages" in the list of information to download <br>
+         - Click "Create file" and wait for the notification saying that your file is ready to download (around 10 minutes) <br>
+         - Donwload the zip file, unzip it, and save it somewhere on your computer <br>
+      </p>
+
+      <h2> Show this application where the data is on your computer to this application</h2>
+      <p>
+        - Click on the button below <br>
+        <div style="text-align:center; padding:30px ">
+          <input id="file" type="file" name="file" class="inputfile" onchange="read_files(this.files)" style="float:center"webkitdirectory = true>
+          <label for="file" class="custom-button">Use your own file</label>
+        </div>
+       <br>
+
+        - Navigate to the Facebook archive you selected <br>
+        - Select the "message" Folder and confirm <br>
+     </p>
+      <p>
+        You may (if you're using Chrome) get a warning saying that your data will be downloaded. While this can be frightening, this is actually false. The data will loaded <i>into your browser</i>, not on internet. Computations will be done locally without a single piece of data leaving your computer.<br><br>
+      </p>
     </div>
   </div>
   <script src="js/pre-processing.js"></script>
