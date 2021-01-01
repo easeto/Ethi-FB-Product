@@ -1,4 +1,4 @@
-# Facebook Messages Visualization
+# Facebook Messegener Visualization
 
 This website/code allows you to see the number of messages you send and receive, when, to whom, etc.. If you have always been curious about your Facebook messages history, you should find some answers here.
 
