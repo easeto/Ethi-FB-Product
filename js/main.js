@@ -406,7 +406,7 @@ function initialize_barchart_parameters() {
 
     bc.img = bc.div_img.append("img")
         .attr("class", "img-color")
-        .attr("src", "img/colors.png")
+        .attr("src", "img/colors_bw.png")
         .attr("height", "20px")
         .attr("width", "20px")
         .attr("onclick", 'define_colored_barchart("' + bc.name + '")')
@@ -462,7 +462,7 @@ function define_colored_barchart(name){
   })
   if (coloredBarchart) {  // If there already was one, remove attribute from old one
     coloredBarchart.isColoredBarchart = false
-    coloredBarchart.img.attr("src", "img/colors.png")
+    coloredBarchart.img.attr("src", "img/colors_bw.png")
   }
   if (newColoredBarchart == coloredBarchart){ // If clicked on the one active, remove everythin
     coloredBarchart = undefined;
@@ -470,7 +470,7 @@ function define_colored_barchart(name){
   } else { // Else, change the colored barchart
     coloredBarchart = newColoredBarchart
     coloredBarchart.isColoredBarchart = true
-    coloredBarchart.img.attr("src", "img/colors_bw.png")
+    coloredBarchart.img.attr("src", "img/colors.png")
     colorScale.domain(coloredBarchart.nested_data.map(x=>x.key))
   }
   draw_barcharts()
