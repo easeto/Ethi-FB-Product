@@ -33,6 +33,7 @@ On the left-hand side of the screen, and at the bottom you can find sliders that
 The blue area on the left represents the density of messages depending on the time of the day, whereas the blue area on the bottom represents the density of message depending on the date.
 Those densities of messages vary when you select filters. For example if you select a conversation, you may see something like this:
 
+<img src="" height="25%" width="25%"> 
 
 ## Filters
 
@@ -48,6 +49,7 @@ For instance, if you click on one particular conversation, then the top 10 sende
 
 If you clicked everywhere on the filters and you want to reset everything, just click on **"Reset All Filters"** on the top right.
 
+<img src="" height="25%" width="25%"> 
 
 ## Message Displayer
 
