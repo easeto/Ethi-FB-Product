@@ -6,12 +6,13 @@ This website/code allows you to see the number of messages you send and receive,
 ### Running It
 
 1. Either clone this repo or download it and un zip it. Then move into the directory of the repo through terminal.
-2. To serve it locally run: `python -m SimpleHTTPServer 8000` in your terminal
+2. To serve it locally run: `python -m SimpleHTTPServer 8000` or `python3 -m http.server 8000` (if the first one doesn't work) in your terminal
 3. Open `https://localhost:8000` in a browser
 4. Hit the top right button `Explore your own data` to import your own data
 5. On Chrome and other browsers it may say you're downloading/uploading data, when in reality everything is happening locally on the browser. In order to make sure this is true, you can also turn off your wifi and try this.
 6. Scroll through the stats on the right and hit the color wheels to see changes in how the at a is shown.
 7. To Zoom In/Out make sure to use overview charts parallel to the x and y axis and drag the zones so that you can focus on a certain time period.
+8. In order to stop the local python server use `control-C` on that tab.
 
 
 
