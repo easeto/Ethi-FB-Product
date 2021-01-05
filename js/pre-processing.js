@@ -69,8 +69,13 @@ function read_files(files){
             // }
             messages_array.push(Object.assign({}, message_info, thread_info));
           }
-          count_end += 1 // Count the number of files that were processsed up to the end
-          if (count_init == count_end){ // If allfiles were processed to the end, the launch main program
+
+          // Count the number of files that were processsed up to the end
+
+          count_end += 1
+
+          // If allfiles were processed to the end, the launch main program
+          if (count_init == count_end){
             // reset();
             main()
           }

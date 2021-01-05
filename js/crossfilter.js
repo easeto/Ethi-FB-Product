@@ -320,6 +320,7 @@ function listCacheHas(key) {
  * @param {*} value The value to set.
  * @returns {Object} Returns the list cache instance.
  */
+
 function listCacheSet(key, value) {
   var data = this.__data__,
       index = assocIndexOf(data, key);
@@ -358,7 +359,7 @@ function MapCache(entries) {
 }
 
 /**
- * Removes all key-value entries from the map.
+ * Removes all the key-value entries from the map.
  *
  * @private
  * @name clear
@@ -381,6 +382,7 @@ function mapCacheClear() {
  * @param {string} key The key of the value to remove.
  * @returns {boolean} Returns `true` if the entry was removed, else `false`.
  */
+
 function mapCacheDelete(key) {
   return getMapData(this, key)['delete'](key);
 }
@@ -832,6 +834,7 @@ function isObject(value) {
  * _.isObjectLike(null);
  * // => false
  */
+
 function isObjectLike(value) {
   return !!value && typeof value == 'object';
 }
@@ -1329,7 +1332,8 @@ function crossfilter() {
       group: group,
       groupAll: groupAll,
       dispose: dispose,
-      remove: dispose, // for backwards-compatibility
+      remove: dispose, 
+      // for backwards-compatibility
       accessor: value,
       id: function() { return id; }
     };
@@ -1352,14 +1356,14 @@ function crossfilter() {
         refilterFunction, // the custom filter function in use
         filterValue, // the value used for filtering (value, array, function or undefined)
         filterValuePresent, // true if filterValue contains something
-        indexListeners = [], // when data is added
+        indexListeners = [], // when the data is added
         dimensionGroups = [],
         lo0 = 0,
         hi0 = 0,
         t = 0,
         k;
 
-    // Updating a dimension is a two-stage process. First, we must update the
+    // Updating a dimension is a two-stage process. First, we should update the
     // associated filters for the newly-added records. Once all dimensions have
     // updated their filters, the groups are notified to update.
     dataListeners.unshift(preAdd);
@@ -1431,7 +1435,7 @@ function crossfilter() {
         newIndex = permute(unsortedIndex, sortMap)
 
       } else{
-        // Permute new values into natural order using a standard sorted index.
+        // Permuting new values into natural order using a standard sorted index
         newValues = newData.map(value);
         newIndex = sort(crossfilter_range(n1), 0, n1);
         newValues = permute(newValues, newIndex);
@@ -1441,7 +1445,7 @@ function crossfilter() {
         n1 = t;
       }
 
-      // Bisect newValues to determine which new records are selected.
+      // Bisecting newValues to determine which new records are selected
       var bounds = refilter(newValues), lo1 = bounds[0], hi1 = bounds[1];
       if (refilterFunction) {
         for (var index2 = 0; index2 < n1; ++index2) {
@@ -1462,7 +1466,7 @@ function crossfilter() {
       }
 
       // If this dimension previously had no data, then we don't need to do the
-      // more expensive merge operation; use the new values and index as-is.
+      // more expensive merge operation; use the new values and index as is
       if (!n0) {
         values = newValues;
         index = newIndex;
@@ -1489,12 +1493,12 @@ function crossfilter() {
         n1 = t
       }
 
-      // Otherwise, create new arrays into which to merge new and old.
+      // Otherwise create new arrays into which to merge new and old
       values = iterable ? new Array(n0 + n1) : new Array(n);
       index = iterable ? new Array(n0 + n1) : crossfilter_index(n, n);
       if(iterable) iterablesIndexFilterStatus = crossfilter_index(n0 + n1, 1);
 
-      // Concatenate the newIterablesIndexCount onto the old one.
+      // Concatenate the newIterablesIndexCount onto the old one
       if(iterable) {
         var oldiiclength = iterablesIndexCount.length;
         iterablesIndexCount = xfilterArray.arrayLengthen(iterablesIndexCount, n);
@@ -1503,7 +1507,7 @@ function crossfilter() {
         }
       }
 
-      // Merge the old and new sorted values, and old and new index.
+      // Merge the old and new sorted values, and old and new index
       var index5 = 0;
       for (; i0 < n0 && i1 < n1; ++index5) {
         if (oldValues[i0] < newValues[i1]) {
@@ -1517,25 +1521,25 @@ function crossfilter() {
         }
       }
 
-      // Add any remaining old values.
+      // Add any remaining old values
       for (; i0 < n0; ++i0, ++index5) {
         values[index5] = oldValues[i0];
         if(iterable) iterablesIndexFilterStatus[index5] = oldIterablesIndexFilterStatus[i0];
         index[index5] = oldIndex[i0];
       }
 
-      // Add any remaining new values.
+      // Add any remaining new values
       for (; i1 < n1; ++i1, ++index5) {
         values[index5] = newValues[i1];
         if(iterable) iterablesIndexFilterStatus[index5] = newIterablesIndexFilterStatus[i1];
         index[index5] = newIndex[i1] + (iterable ? old_n0 : n0);
       }
 
-      // Bisect again to recompute lo0 and hi0.
+      // Bisect again to recompute lo0 and hi0
       bounds = refilter(values), lo0 = bounds[0], hi0 = bounds[1];
     }
 
-    // When all filters have updated, notify index listeners of the new values.
+    // When all filters have updated, notify index listeners of the new values
     function postAdd(newData, n0, n1) {
       indexListeners.forEach(function(l) { l(newValues, newIndex, n0, n1); });
       newValues = newIndex = null;
@@ -1575,13 +1579,13 @@ function crossfilter() {
       if (iterable) iterablesIndexFilterStatus.length = j;
       while (j < n0) index[j++] = 0;
 
-      // Bisect again to recompute lo0 and hi0.
+      // Bisect again to recompute lo0 and hi0
       var bounds = refilter(values);
       lo0 = bounds[0], hi0 = bounds[1];
     }
 
-    // Updates the selected values based on the specified bounds [lo, hi].
-    // This implementation is used by all the public filter methods.
+    // Updates the selected values based on the specified bounds [lo, hi]
+    // This implementation is used by all the public filter methods
     function filterIndexBounds(bounds) {
 
       var lo1 = bounds[0],
@@ -1604,7 +1608,7 @@ function crossfilter() {
           valueIndexRemoved = [];
 
 
-      // Fast incremental update based on previous lo index.
+      // Fast incremental update based on previous lo index
       if (lo1 < lo0) {
         for (i = lo1, j = Math.min(lo0, hi1); i < j; ++i) {
           added.push(index[i]);
@@ -1617,7 +1621,7 @@ function crossfilter() {
         }
       }
 
-      // Fast incremental update based on previous hi index.
+      // Fast incremental update based on previous hi index
       if (hi1 > hi0) {
         for (i = Math.max(lo1, hi0), j = hi1; i < j; ++i) {
           added.push(index[i]);
@@ -1643,8 +1647,8 @@ function crossfilter() {
 
       } else {
         // For iterables, we need to figure out if the row has been completely removed vs partially included
-        // Only count a row as added if it is not already being aggregated. Only count a row
-        // as removed if the last element being aggregated is removed.
+        // Only count a row as added if it is not already being aggregated
+        // Only count a row as removed if the last element being aggregated is removed
 
         var newAdded = [];
         var newRemoved = [];
@@ -1696,10 +1700,10 @@ function crossfilter() {
       return dimension;
     }
 
-    // Filters this dimension using the specified range, value, or null.
-    // If the range is null, this is equivalent to filterAll.
-    // If the range is an array, this is equivalent to filterRange.
-    // Otherwise, this is equivalent to filterExact.
+    // Filters this dimension using the specified range, value, or null
+    // If the range is null, this is equivalent to filterAll
+    // If the range is an array, this is equivalent to filterRange
+    // Otherwise, this is equivalent to filterExact
     function filter(range) {
       return range == null
           ? filterAll() : Array.isArray(range)
@@ -1708,15 +1712,15 @@ function crossfilter() {
           : filterExact(range);
     }
 
-    // Filters this dimension to select the exact value.
+    // Filters this dimension to select the exact value
     function filterExact(value) {
       filterValue = value;
       filterValuePresent = true;
       return filterIndexBounds((refilter = xfilterFilter.filterExact(bisect, value))(values));
     }
 
-    // Filters this dimension to select the specified range [lo, hi].
-    // The lower bound is inclusive, and the upper bound is exclusive.
+    // Filters this dimension to select the specified range [lo, hi]
+    // The lower bound is inclusive, and the upper bound is exclusive
     function filterRange(range) {
       filterValue = range;
       filterValuePresent = true;
@@ -1730,7 +1734,7 @@ function crossfilter() {
       return filterIndexBounds((refilter = xfilterFilter.filterAll)(values));
     }
 
-    // Filters this dimension using an arbitrary function.
+    // Filters this dimension using an arbitrary function
     function filterFunction(f) {
       filterValue = f;
       filterValuePresent = true;
@@ -2829,9 +2833,6 @@ module.exports = permute;
 var crossfilter_identity = require('./identity');
 var xFilterInsertionsort = require('./insertionsort');
 
-// Algorithm designed by Vladimir Yaroslavskiy.
-// Implementation based on the Dart project; see NOTICE and AUTHORS for details.
-
 function quicksort_by(f) {
   var insertionsort = xFilterInsertionsort.by(f);
 
@@ -2885,7 +2886,7 @@ function quicksort_by(f) {
 
     // Note that for value comparison, <, <=, >= and > coerce to a primitive via
     // Object.prototype.valueOf; == and === do not, so in order to be consistent
-    // with natural order (such as for Date objects), we must do two compares.
+    // with natural order (such as for Date objects), we must do two compares
     var pivotsEqual = pivotValue1 <= pivotValue2 && pivotValue1 >= pivotValue2;
     if (pivotsEqual) {
 
@@ -2903,6 +2904,8 @@ function quicksort_by(f) {
       //   1) for x in ]left, less[ : x < pivot.
       //   2) for x in [less, k[ : x == pivot.
       //   3) for x in ]great, right[ : x > pivot.
+
+
       for (var k = less; k <= great; ++k) {
         var ek = a[k], xk = f(ek);
         if (xk < pivotValue1) {
@@ -2919,8 +2922,9 @@ function quicksort_by(f) {
           // interval. Otherwise a[k - 1] == pivot and the search stops at k-1.
           // Note that in the latter case invariant 2 will be violated for a
           // short amount of time. The invariant will be restored when the
-          // pivots are put into their final positions.
+          // pivots are put into their final positions
           /* eslint no-constant-condition: 0 */
+          
           while (true) {
             var greatValue = f(a[great]);
             if (greatValue > pivotValue1) {

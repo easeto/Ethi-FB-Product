@@ -5,8 +5,8 @@ This website/code allows you to see the number of messages you send and receive,
 
 ### Running It
 
-1. To serve it locally run: python -m SimpleHTTPServer 8000 in your terminal
-2. Open localhost:8000 in a browser
+1. To serve it locally run: `python -m SimpleHTTPServer 8000` in your terminal
+2. Open `https://localhost:8000` in a browser
 3. Hit the top right button `Explore your own data` to import your own data
 4. On Chrome and other browsers it may say you're downloading/uploading data, when in reality everything is happening locally on the browser. In order to make sure this is true, you can also turn off your wifi and try this.
 5. Scroll through the stats on the right and hit the color wheels to see changes in how the at a is shown.
@@ -14,7 +14,7 @@ This website/code allows you to see the number of messages you send and receive,
 
 
 
-### General design
+### General Design
 
 The initial dataset is from a sample dataset allowing users to explore this visualization. In addition you can explore your own data with the button at the top right button. Import the messages folder from the json version of your facebook data.
 
