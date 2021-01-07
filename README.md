@@ -59,3 +59,7 @@ In the bottom right-hand corner, you can see the **Message Displayer**. When you
 - The date of the message
 - The sender
 - The message
+
+
+## Things we used:
+- D3.js
